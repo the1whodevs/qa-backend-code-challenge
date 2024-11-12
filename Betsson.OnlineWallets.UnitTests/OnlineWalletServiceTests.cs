@@ -25,17 +25,33 @@ namespace Betsson.OnlineWallets.UnitTests
         {
             // First setup the mock repository to return a default/null wallet entry from the LastOnlineWalletEntryAsync function.
             // This mimicks the expected behaviour when a wallet has no transactions.
-            _mockRepository.Setup(r => r.GetLastOnlineWalletEntryAsync()).ReturnsAsync((OnlineWalletEntry)null);
+            _ = _mockRepository.Setup(r => r.GetLastOnlineWalletEntryAsync()).ReturnsAsync((OnlineWalletEntry)null);
 
-            // Then get the result of GetBalanceAsync, and check if the result is the expected result (0).
+            // Then get the balance using GetBalanceAsync, and check if the result is the expected result (0).
             var balance = await _service.GetBalanceAsync();
+
             Assert.That(balance.Amount, Is.EqualTo(0));
         }
 
+        /// <summary>
+        /// Tests if GetBalance properly returns the balance based on the last wallet entry, if there are transactions in the wallet.
+        /// </summary>
         [Test]
-        public void GetBalance_HasTransactions()
+        public async Task GetBalance_HasTransactions()
         {
-            Assert.Pass();
+            // First create a fake last wallet entry to mimick transactions in the wallet.
+            var lastWalletEntry = new OnlineWalletEntry();
+            lastWalletEntry.Amount = 50;
+            lastWalletEntry.BalanceBefore = 100;
+
+            // Then setup the mock repository to return the fake wallet entry from the LastOnlineWalletEntryAsync function.
+            // This mimicks the expected behaviour when a wallet has at least 1 transaction.
+            _ = _mockRepository.Setup(r => r.GetLastOnlineWalletEntryAsync()).ReturnsAsync(lastWalletEntry);
+
+            // Then get the balance using GetBalanceAsync, and check if the result is the expected result (150).
+            var balance = await _service.GetBalanceAsync();
+
+            Assert.That(balance.Amount, Is.EqualTo(150));
         }
     }
 }
