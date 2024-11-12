@@ -22,7 +22,7 @@ namespace Betsson.OnlineWallets.UnitTests
         /// Tests if GetBalance properly returns 0 balance when there are no transactions in the wallet.
         /// </summary>
         [Test]
-        public async Task GetBalance_NoTransactions()
+        public async Task GetBalance_WithoutTransactions_ReturnsZero()
         {
             // First setup the mock repository to return a default/null wallet entry from the LastOnlineWalletEntryAsync function.
             // This mimicks the expected behaviour when a wallet has no transactions.
@@ -38,7 +38,7 @@ namespace Betsson.OnlineWallets.UnitTests
         /// Tests if GetBalance properly returns the balance based on the last wallet entry, if there are transactions in the wallet.
         /// </summary>
         [Test]
-        public async Task GetBalance_HasTransactions()
+        public async Task GetBalance_WithTransactions_ReturnsBalance()
         {
             // First create a fake last wallet entry to mimick transactions in the wallet.
             var lastWalletEntry = new OnlineWalletEntry();
@@ -56,18 +56,19 @@ namespace Betsson.OnlineWallets.UnitTests
         }
 
         /// <summary>
-        /// Tests if DespositFundsAsync calls 'InsertOnlineWalletEntry' and returns the correct balance.
+        /// Tests if DepositFundsAsync (with a valid amount) calls 'InsertOnlineWalletEntry' exactly once, 
+        /// and returns the correct balance.
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task DepositFunds()
+        public async Task DepositFunds_ValidAmount_ReturnsCorrectBalance()
         {
             // First create a fake wallet entry to mimick transactions in the wallet.
             var lastWalletEntry = new OnlineWalletEntry();
             lastWalletEntry.Amount = 50;
             lastWalletEntry.BalanceBefore = 100;
 
-            // Then setup thye mock repository to return the fake wallet entry from the LastOnlineWalletEntryAsync function.
+            // Then setup the mock repository to return the fake wallet entry from the LastOnlineWalletEntryAsync function.
             // This mimicks the expected behaviour when a wallet has at least 1 transaction.
             _mockRepository.Setup(r => r.GetLastOnlineWalletEntryAsync()).ReturnsAsync(lastWalletEntry);
 
@@ -82,6 +83,35 @@ namespace Betsson.OnlineWallets.UnitTests
             // Finally check that InsertOnlineWalletEntryAsync is called exactly 1 time, as expected!
             _mockRepository.Verify(r => r.InsertOnlineWalletEntryAsync(It.Is<OnlineWalletEntry>(e => e.Amount == 75 && e.BalanceBefore == 150)), Times.Once);
 
+        }
+
+        /// <summary>
+        /// Tests if WithdrawFundsAsync, when called with a withdrawal that the wallet has sufficient balance,
+        /// updates the balance correctly, and returns it, as well as calls InsertOnlineWalletEntry exactly once.
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task WithdrawFunds_SufficientBalance_ReturnsCorrectBalance()
+        {
+            // First create a fake wallet entry to mimick transactions in the wallet.
+            var lastWalletEntry = new OnlineWalletEntry();
+            lastWalletEntry.Amount = 50;
+            lastWalletEntry.BalanceBefore = 100;
+
+            // Then setup the mock repository to return the fake wallet entry when LastOnlineWalletEntryAsync function is called.
+            // This mimicks the expected behaviour when a wallet has at least 1 transaction.
+            _mockRepository.Setup(r => r.GetLastOnlineWalletEntryAsync()).ReturnsAsync(lastWalletEntry);
+
+            // Then creae a fake withdrawal.
+            var withdrawal = new Withdrawal { Amount = 75 };
+
+            // Then withdraw the fake withdrawal and ensure the balance returned is the balance expected (75).
+            var balance = await _service.WithdrawFundsAsync(withdrawal);
+
+            Assert.That(balance.Amount, Is.EqualTo(75));
+
+            // Finally check that InsertOnlineWalletEntryAsync is called exactly 1 time, as expected!
+            _mockRepository.Verify(r => r.InsertOnlineWalletEntryAsync(It.Is<OnlineWalletEntry>(e => e.Amount == -75 && e.BalanceBefore == 150)), Times.Once);
         }
     }
 }
