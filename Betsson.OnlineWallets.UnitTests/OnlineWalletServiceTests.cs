@@ -1,5 +1,6 @@
 using Betsson.OnlineWallets.Data.Models;
 using Betsson.OnlineWallets.Data.Repositories;
+using Betsson.OnlineWallets.Exceptions;
 using Betsson.OnlineWallets.Models;
 using Betsson.OnlineWallets.Services;
 using Moq;
@@ -112,6 +113,38 @@ namespace Betsson.OnlineWallets.UnitTests
 
             // Finally check that InsertOnlineWalletEntryAsync is called exactly 1 time, as expected!
             _mockRepository.Verify(r => r.InsertOnlineWalletEntryAsync(It.Is<OnlineWalletEntry>(e => e.Amount == -75 && e.BalanceBefore == 150)), Times.Once);
+        }
+
+        /// <summary>
+        /// Tests if WithdrawFundsAsync, when called with a withdrawal that the wallet has insufficient balance,
+        /// throws an InsufficientBalanceException.
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task WithdrawFunds_InsufficientBalance_ThrowsException()
+        {
+            // First create a fake wallet entry to mimick transactions in the wallet.
+            var lastWalletEntry = new OnlineWalletEntry();
+            lastWalletEntry.Amount = 50;
+            lastWalletEntry.BalanceBefore = 100;
+
+            // Then setup the mock repository to return the fake wallet entry when LastOnlineWalletEntryAsync function is called.
+            // This mimicks the expected behaviour when a wallet has at least 1 transaction.
+            _mockRepository.Setup(r => r.GetLastOnlineWalletEntryAsync()).ReturnsAsync(lastWalletEntry);
+
+            // Then creae a fake withdrawal, with Amount greater than the lastWalletEntry.Amount + lastWalletEntry.BalanceBefore.
+            var withdrawal = new Withdrawal { Amount = 250 };
+
+            // Then check if withdrawing the fake withdrawal throws an insufficient balance exception.
+            var insufficientBalanceExceptionThrown = false;
+
+            try
+            {
+                _ = await _service.WithdrawFundsAsync(withdrawal);
+            }
+            catch (InsufficientBalanceException) { insufficientBalanceExceptionThrown = true; }
+
+            Assert.That(insufficientBalanceExceptionThrown, Is.True);
         }
     }
 }
