@@ -1,5 +1,6 @@
 using Betsson.OnlineWallets.Data.Models;
 using Betsson.OnlineWallets.Data.Repositories;
+using Betsson.OnlineWallets.Models;
 using Betsson.OnlineWallets.Services;
 using Moq;
 
@@ -52,6 +53,35 @@ namespace Betsson.OnlineWallets.UnitTests
             var balance = await _service.GetBalanceAsync();
 
             Assert.That(balance.Amount, Is.EqualTo(150));
+        }
+
+        /// <summary>
+        /// Tests if DespositFundsAsync calls 'InsertOnlineWalletEntry' and returns the correct balance.
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task DepositFunds()
+        {
+            // First create a fake wallet entry to mimick transactions in the wallet.
+            var lastWalletEntry = new OnlineWalletEntry();
+            lastWalletEntry.Amount = 50;
+            lastWalletEntry.BalanceBefore = 100;
+
+            // Then setup thye mock repository to return the fake wallet entry from the LastOnlineWalletEntryAsync function.
+            // This mimicks the expected behaviour when a wallet has at least 1 transaction.
+            _mockRepository.Setup(r => r.GetLastOnlineWalletEntryAsync()).ReturnsAsync(lastWalletEntry);
+
+            // Then create a fake deposit.
+            var deposit = new Deposit { Amount = 75 };
+
+            // Then deposit the fake deposit and ensure the balance returned is the balance expected (225).
+            var balance = await _service.DepositFundsAsync(deposit);
+
+            Assert.That(balance.Amount, Is.EqualTo(225));
+
+            // Finally check that InsertOnlineWalletEntryAsync is called exactly 1 time, as expected!
+            _mockRepository.Verify(r => r.InsertOnlineWalletEntryAsync(It.Is<OnlineWalletEntry>(e => e.Amount == 75 && e.BalanceBefore == 150)), Times.Once);
+
         }
     }
 }
