@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Betsson.OnlineWallets", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Betsson.OnlineWallets.Data", "src\Betsson.OnlineWallets.Data\Betsson.OnlineWallets.Data.csproj", "{4D65DE1B-3A57-4E78-981D-2D1279995F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betsson.OnlineWallets.UnitTests", "Betsson.OnlineWallets.UnitTests\Betsson.OnlineWallets.UnitTests.csproj", "{E9226020-66BD-4349-AFB4-DBBF92F60830}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Betsson.OnlineWallets.UnitTests", "Betsson.OnlineWallets.UnitTests\Betsson.OnlineWallets.UnitTests.csproj", "{E9226020-66BD-4349-AFB4-DBBF92F60830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betsson.OnlineWallets.E2ETests", "Betsson.OnlineWallets.E2ETests\Betsson.OnlineWallets.E2ETests.csproj", "{EB126DA4-22CE-4528-A961-466C766F2DB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{E9226020-66BD-4349-AFB4-DBBF92F60830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9226020-66BD-4349-AFB4-DBBF92F60830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9226020-66BD-4349-AFB4-DBBF92F60830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB126DA4-22CE-4528-A961-466C766F2DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB126DA4-22CE-4528-A961-466C766F2DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB126DA4-22CE-4528-A961-466C766F2DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB126DA4-22CE-4528-A961-466C766F2DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,9 @@ Global
 		{3C10BDAD-640C-44BC-B22B-CB3CDE9691A1} = {07962A7A-1196-4703-9F59-D710D906DCAB}
 		{4D65DE1B-3A57-4E78-981D-2D1279995F6D} = {07962A7A-1196-4703-9F59-D710D906DCAB}
 		{E9226020-66BD-4349-AFB4-DBBF92F60830} = {07962A7A-1196-4703-9F59-D710D906DCAB}
+		{EB126DA4-22CE-4528-A961-466C766F2DB1} = {07962A7A-1196-4703-9F59-D710D906DCAB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75F32E8A-98BD-49D8-9250-FC4E0C8A56C0}
 	EndGlobalSection
 EndGlobal
