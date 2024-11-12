@@ -1,0 +1,13 @@
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\bin\Debug\net8.0\Betsson.OnlineWallets.Data.deps.json
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\bin\Debug\net8.0\Betsson.OnlineWallets.Data.dll
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\bin\Debug\net8.0\Betsson.OnlineWallets.Data.pdb
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.csproj.AssemblyReference.cache
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.GeneratedMSBuildEditorConfig.editorconfig
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.AssemblyInfoInputs.cache
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.AssemblyInfo.cs
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.csproj.CoreCompileInputs.cache
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.sourcelink.json
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.dll
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\refint\Betsson.OnlineWallets.Data.dll
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\Betsson.OnlineWallets.Data.pdb
+F:\Other Projects\qa-backend-code-challenge\src\Betsson.OnlineWallets.Data\obj\Debug\net8.0\ref\Betsson.OnlineWallets.Data.dll
