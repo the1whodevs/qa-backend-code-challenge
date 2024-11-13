@@ -10,6 +10,9 @@ namespace Betsson.OnlineWallets.E2ETests
     {
         private RestClient _client;
 
+        // Required because response key is 'amount' and class variable name is 'Amount'.
+        JsonSerializerOptions options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
         [SetUp]
         public void Setup()
         {
@@ -42,7 +45,7 @@ namespace Betsson.OnlineWallets.E2ETests
             Assert.That(response.Content, Is.Not.Empty, "Response should not have empty contents");
 
             // Then ensure the balance in the response is greater than or equal to 0, as expected.
-            var balanceResponse = JsonSerializer.Deserialize<BalanceResponse>(response.Content);
+            var balanceResponse = JsonSerializer.Deserialize<BalanceResponse>(response.Content, options);
             Assert.That(balanceResponse?.Amount, Is.GreaterThanOrEqualTo(0), "Balance should be zero or positive.");
         }
 
@@ -54,11 +57,6 @@ namespace Betsson.OnlineWallets.E2ETests
         [Test]
         public async Task DepositFunds_IncreasesBalance()
         {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true // Required because response key is 'amount' and class variable name is 'Amount'.
-            };
-
             // First create a request, execute and wait for the response of GetBalance.
             var getBalanceRequest = new RestRequest("/onlinewallet/balance", Method.Get);
             var getBalanceResponse = await _client.ExecuteAsync(getBalanceRequest);
