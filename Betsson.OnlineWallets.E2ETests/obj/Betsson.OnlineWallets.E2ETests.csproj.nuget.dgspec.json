@@ -1,0 +1,319 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\Other Projects\\qa-backend-code-challenge\\Betsson.OnlineWallets.E2ETests\\Betsson.OnlineWallets.E2ETests.csproj": {}
+  },
+  "projects": {
+    "F:\\Other Projects\\qa-backend-code-challenge\\Betsson.OnlineWallets.E2ETests\\Betsson.OnlineWallets.E2ETests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Other Projects\\qa-backend-code-challenge\\Betsson.OnlineWallets.E2ETests\\Betsson.OnlineWallets.E2ETests.csproj",
+        "projectName": "Betsson.OnlineWallets.E2ETests",
+        "projectPath": "F:\\Other Projects\\qa-backend-code-challenge\\Betsson.OnlineWallets.E2ETests\\Betsson.OnlineWallets.E2ETests.csproj",
+        "packagesPath": "C:\\Users\\geras\\.nuget\\packages\\",
+        "outputPath": "F:\\Other Projects\\qa-backend-code-challenge\\Betsson.OnlineWallets.E2ETests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\geras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Web\\Betsson.OnlineWallets.Web.csproj": {
+                "projectPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Web\\Betsson.OnlineWallets.Web.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.14.0, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[112.1.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Data\\Betsson.OnlineWallets.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Data\\Betsson.OnlineWallets.Data.csproj",
+        "projectName": "Betsson.OnlineWallets.Data",
+        "projectPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Data\\Betsson.OnlineWallets.Data.csproj",
+        "packagesPath": "C:\\Users\\geras\\.nuget\\packages\\",
+        "outputPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\geras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Web\\Betsson.OnlineWallets.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Web\\Betsson.OnlineWallets.Web.csproj",
+        "projectName": "Betsson.OnlineWallets.Web",
+        "projectPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Web\\Betsson.OnlineWallets.Web.csproj",
+        "packagesPath": "C:\\Users\\geras\\.nuget\\packages\\",
+        "outputPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\geras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets\\Betsson.OnlineWallets.csproj": {
+                "projectPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets\\Betsson.OnlineWallets.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets\\Betsson.OnlineWallets.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets\\Betsson.OnlineWallets.csproj",
+        "projectName": "Betsson.OnlineWallets",
+        "projectPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets\\Betsson.OnlineWallets.csproj",
+        "packagesPath": "C:\\Users\\geras\\.nuget\\packages\\",
+        "outputPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\geras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Data\\Betsson.OnlineWallets.Data.csproj": {
+                "projectPath": "F:\\Other Projects\\qa-backend-code-challenge\\src\\Betsson.OnlineWallets.Data\\Betsson.OnlineWallets.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.9.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
