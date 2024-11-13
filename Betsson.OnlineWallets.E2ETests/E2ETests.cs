@@ -3,6 +3,7 @@ using RestSharp;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Betsson.OnlineWallets.Web.Models;
+using Betsson.OnlineWallets.Exceptions;
 
 namespace Betsson.OnlineWallets.E2ETests
 {
@@ -99,7 +100,7 @@ namespace Betsson.OnlineWallets.E2ETests
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task WithdrawFunds_DecreasesBalance()
+        public async Task WithdrawFunds_SufficientBalance_DecreasesBalance()
         {
             // First create a request, execute and wait for the response of GetBalance.
             var getBalanceRequest = new RestRequest("/onlinewallet/balance", Method.Get);
@@ -137,7 +138,66 @@ namespace Betsson.OnlineWallets.E2ETests
             // Deserialize with case-insensitive options
             getBalance = JsonSerializer.Deserialize<BalanceResponse>(getBalanceResponse.Content, options);
             Assert.That(getBalance?.Amount, Is.EqualTo(startingBalance - withdrawAmount), $"Balance from GetBalance after the withdrawal should be equal to the starting balance ({startingBalance}) - the withdrawn amount ({withdrawAmount}).");
+        }
 
+        /// <summary>
+        /// Sends a POST request to withdraw funds, after checking balance, ensuring the amount to withdraw is insufficient.
+        /// Then checks the response from the server is Status 400, Bad Request, with type InsufficientBalanceException.
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task WithdrawFunds_InsufficientBalance_BadRequest()
+        {
+            // First create a request, execute and wait for the response of GetBalance.
+            var getBalanceRequest = new RestRequest("/onlinewallet/balance", Method.Get);
+            var getBalanceResponse = await _client.ExecuteAsync(getBalanceRequest);
+
+            // Deserialize with case-insensitive options
+            var getBalance = JsonSerializer.Deserialize<BalanceResponse>(getBalanceResponse.Content, options);
+            Console.WriteLine($"GetBalance Response JSON: {getBalanceResponse.Content}");
+
+            var startingBalance = (decimal)(getBalance?.Amount);
+
+            // Then create the request, execute it and wait for the response.
+            var request = new RestRequest("/onlinewallet/withdraw", Method.Post);
+
+            // Ensure the amount to withdraw is greater than the startingBalance.
+            var withdrawAmount = Math.Round(startingBalance * 2.0M, 1, MidpointRounding.ToZero);
+            request.AddJsonBody(new { amount = withdrawAmount });
+
+            var response = await _client.ExecuteAsync(request);
+
+            // Then ensure the response is not successful, with non-empty contents.
+            Assert.That(response.IsSuccessful, Is.False, "Withdraw should NOT be successful");
+            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.BadRequest));
+            Assert.That(response.Content, Is.Not.Empty, "Response should not have empty contents");
+
+            Console.WriteLine($"Withdraw Response JSON: {response.Content}");
+
+            // Then ensure the the type of BadRequest is 'InsufficientBalanceException'
+            var withdrawBalanceResponse = JsonSerializer.Deserialize<WithdrawResponseBadRequest>(response.Content, options);
+            Console.WriteLine($"Withdraw Balance Response Deserialized: {withdrawBalanceResponse.ToString()}");
+            Assert.That(Equals(withdrawBalanceResponse?.Type, nameof(InsufficientBalanceException)), $"Type of BadRequest should be {nameof(InsufficientBalanceException)}");
+
+            // Then ensure GetBalance properly returns the expected balance (startingBalance).
+            getBalanceResponse = await _client.ExecuteAsync(getBalanceRequest);
+            // Deserialize with case-insensitive options
+            getBalance = JsonSerializer.Deserialize<BalanceResponse>(getBalanceResponse.Content, options);
+            Assert.That(getBalance?.Amount, Is.EqualTo(startingBalance), $"Balance from GetBalance after the failed withdrawal should be equal to the starting balance ({startingBalance}).");
+        }
+
+        private class WithdrawResponseBadRequest
+        {
+            public string Type { get; set; }
+            public string Title { get; set; }
+            public int Status { get; set; }
+            public string Detail { get; set; }
+            public string TraceId { get; set; }
+
+            public override string ToString()
+            {
+                return $"Type:{Type}\nTitle:{Title}\nStatus:{Status}\nDetail:{Detail}\ntraceId:{TraceId}";
+            }
         }
     }
 }

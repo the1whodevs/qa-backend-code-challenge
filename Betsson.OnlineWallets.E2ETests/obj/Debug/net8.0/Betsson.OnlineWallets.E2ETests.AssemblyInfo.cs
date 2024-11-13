@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Betsson.OnlineWallets.E2ETests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a9c7f47cfa4e40a2964f56b570436abc3bf2221")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f9c42820af89c4c62c88e4e7da15d48eeae93e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("Betsson.OnlineWallets.E2ETests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Betsson.OnlineWallets.E2ETests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
